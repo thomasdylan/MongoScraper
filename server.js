@@ -1,4 +1,5 @@
 const express = require("express");
+const exphbs = require("express-handlebars");
 const mongoose = require("mongoose");
 const axios = require("axios");
 const cheerio = require("cheerio");
@@ -11,11 +12,17 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 mongoose.connect(MONGODB_URI);
 
 //ROUTES
 /*------------------------------------------------------------------------*/
+app.get("/", (req, res) => {
+    res.render("index");
+});
+
 app.get("/scrape", (req, res) => {
     axios.get("https://thehardtimes.net/").then((response) => {
         const $ = cheerio.load(response.data);
