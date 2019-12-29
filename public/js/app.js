@@ -21,7 +21,7 @@ $(document).on("click", "p", function () {
             $("#notes").append("<button data-id='" + data[0]._id + "' id='savenote'>Add Comment</button> <br /><br />");
             $("#notes").append("<p><strong> Comments </strong></p> <hr />");
             for (let i = 0; i < data[0].note.length; i++) {
-                $("#notes").append("<p data-id='" + data[0].note[i]._id + "'>" + "<strong>" + "" + data[0].note[i].title + "</strong>" + "<br />" + data[0].note[i].body + "</p> <hr />");
+                $("#notes").append("<p data-id='" + data[0].note[i]._id + "'>" + "<strong>" + "" + data[0].note[i].title + "</strong>" + "<br />" + data[0].note[i].body + "     </p> <button data-id='" + data[0].note[i]._id + "' id='deletenote'>Delete</button><hr />");
             };
         });
 });
@@ -44,4 +44,16 @@ $(document).on("click", "#savenote", function () {
 
     $("#titleinput").val("");
     $("#bodyinput").val("");
+});
+
+$(document).on("click", "#deletenote", function () {
+    const thisId = $(this).attr("data-id");
+    console.log(thisId);
+    $.ajax({
+        method: "DELETE",
+        url: "/notes/" + thisId,
+    }).then(function (data) {
+        console.log("data");
+        $("#notes").empty();
+    });
 });

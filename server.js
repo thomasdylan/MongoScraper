@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
             result.title = $(this).children(".post-header").children("h2").children("a").text();
             result.link = $(this).children(".post-header").children("h2").children("a").attr("href");
             result.sum = $(this).children(".post-content").children("p").text();
-            console.log("--------------------------RESULT----------------------------------------------\n" + JSON.stringify(result));
+
             db.Article.create(result)
                 .then((dbArticle) => {
                     console.log(dbArticle);
@@ -83,6 +83,18 @@ app.post("/articles/:id", (req, res) => {
         })
         .then((dbArticle) => {
             res.json(dbArticle);
+        })
+        .catch((err) => {
+            res.json(err);
+        });
+});
+
+app.delete("/notes/:id", (req, res) => {
+    return db.Note.deleteOne({
+        _id: req.params.id
+    })
+        .then((dbNote) => {
+            res.json(dbNote);
         })
         .catch((err) => {
             res.json(err);
