@@ -19,7 +19,10 @@ $(document).on("click", "p", function () {
             $("#notes").append("<input id='titleinput' name='title' placeholder='Name'>");
             $("#notes").append("<textarea id='bodyinput' name='body' placeholder='Comment'></textarea>");
             $("#notes").append("<button data-id='" + data[0]._id + "' id='savenote'>Add Comment</button> <br /><br />");
-            $("#notes").append("<p data-id='" + data[0].note._id + "'>" + "<strong>" + "Comments <hr />" + data[0].note.title + "</strong>" + "<br />" + data[0].note.body + "</p> <br />");
+            $("#notes").append("<p><strong> Comments </strong></p> <hr />");
+            for (let i = 0; i < data[0].note.length; i++) {
+                $("#notes").append("<p data-id='" + data[0].note[i]._id + "'>" + "<strong>" + "" + data[0].note[i].title + "</strong>" + "<br />" + data[0].note[i].body + "</p> <hr />");
+            };
         });
 });
 

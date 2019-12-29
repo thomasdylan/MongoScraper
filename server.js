@@ -76,51 +76,9 @@ app.post("/articles/:id", (req, res) => {
             return db.Article.findOneAndUpdate({
                 _id: req.params.id
             }, {
-                note: dbNote._id
-            }, {
-                new: true
-            });
-        })
-        .then((dbArticle) => {
-            res.json(dbArticle);
-        })
-        .catch((err) => {
-            res.json(err);
-        });
-});
-
-app.get("/articles", (req, res) => {
-    db.Article.find({})
-        .then((dbArticle) => {
-            res.json(dbArticle);
-        })
-        .catch((err) => {
-            res.json(err);
-        });
-});
-
-app.get("/articles/:id", (req, res) => {
-    db.Article.find({
-            _id: req.params.id
-        })
-        .populate("note")
-        .then((dbArticle) => {
-            res.json(dbArticle);
-        })
-        .catch((err) => {
-            res.json(err);
-        });
-});
-
-app.post("/articles/:id", (req, res) => {
-    db.Note.create(req.body)
-        .then((dbNote) => {
-            return db.Article.findOneAndUpdate({
-                _id: req.params.id
-            }, {
-                note: dbNote._id
-            }, {
-                new: true
+                $push: {
+                    note: dbNote._id
+                }
             });
         })
         .then((dbArticle) => {
