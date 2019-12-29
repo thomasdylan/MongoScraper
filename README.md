@@ -1,6 +1,6 @@
 # Hard Times News Scraper
 
-https://hardtimesscraper.herokuapp.com/
+https://hardtimesscraper.herokuapp.com/  
 This site pulls the articles from the satire news site [*The Hard Times*](https://thehardtimes.net/).  
 Users can click on an article and add or delete comments.  
 
