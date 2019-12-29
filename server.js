@@ -104,4 +104,4 @@ app.delete("/notes/:id", (req, res) => {
 //END ROUTES
 /*------------------------------------------------------------------------*/
 
-app.listen(PORT, () => console.log("App running on port " + PORT));
+app.listen(process.env.PORT || PORT);
