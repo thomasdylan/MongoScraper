@@ -14,14 +14,14 @@ $(document).on("click", "p", function () {
             url: "/articles/" + thisId
         })
         .then(function (data) {
-            console.log(data);
+            console.log(data); 
             $("#notes").append("<h2>" + data[0].title + "</h2>");
-            $("#notes").append("<input id='titleinput' name='title' placeholder='Name'>");
-            $("#notes").append("<textarea id='bodyinput' name='body' placeholder='Comment'></textarea>");
-            $("#notes").append("<button data-id='" + data[0]._id + "' id='savenote'>Add Comment</button> <br /><br />");
+            $("#notes").append("<input class='input-group-text' id='titleinput' name='title' placeholder='Name'>");
+            $("#notes").append("<textarea class='input-group-text' id='bodyinput' name='body' placeholder='Comment'></textarea>");
+            $("#notes").append("<button type='button' class='btn btn-light' data-id='" + data[0]._id + "' id='savenote'>Add Comment</button> <br /><br />");
             $("#notes").append("<p><strong> Comments </strong></p> <hr />");
             for (let i = 0; i < data[0].note.length; i++) {
-                $("#notes").append("<p data-id='" + data[0].note[i]._id + "'>" + "<strong>" + "" + data[0].note[i].title + "</strong>" + "<br />" + data[0].note[i].body + "     </p> <button data-id='" + data[0].note[i]._id + "' id='deletenote'>Delete</button><hr />");
+                $("#notes").append("<p data-id='" + data[0].note[i]._id + "'>" + "<strong>" + "" + data[0].note[i].title + "</strong>" + "<br />" + data[0].note[i].body + "     </p> <button type='button' class='btn btn-light' data-id='" + data[0].note[i]._id + "' id='deletenote'>Delete</button><hr />");
             };
         });
 });
